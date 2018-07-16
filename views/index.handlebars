@@ -1,0 +1,33 @@
+<div>
+    <input id="input" type="text">
+</div>
+<div>
+    <button id="submit">SUBMIT</button>
+</div>
+
+<div>
+    {{#each burger}}
+           {{#unless devoured}}
+             <div class="card mb-3 p-1">
+               <span><i>{{burger_name}}</i>
+                 <button class="change-devoured btn-info" data-id="{{id}}" data-buttondevoured="{{devoured}}">
+                 {{#if devoured}}Put Back!{{else}}EAT!{{/if}}
+                 </button>
+               </span>
+             </div>
+           {{/unless}}
+         {{/each}}
+</div>
+<div class="border-top p-3 m-3">
+    {{#each burger}}
+           {{#if this.devoured}}
+             <div class="card mb-3 p-1">
+               <span><i>{{burger_name}}</i>
+                 <button class="change-devoured btn-info" data-id="{{id}}" data-buttondevoured="{{devoured}}">
+                 {{#if devoured}}Put Back!{{else}}EAT!{{/if}}
+                 </button>
+               </span>
+             </div>
+           {{/if}}
+         {{/each}}
+</div>

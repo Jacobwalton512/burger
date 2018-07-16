@@ -3,9 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <title>Burger List</title>
+  
   <script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  {{!-- <script src="/assets/java/userJava.js"></script> --}}
 </head>
 <body>
+  <h1>You Opened this Page</h1>
   {{{ body }}}
+  <script>
+    $(document).ready(function(){
+
+
+$("#submit").on("click", function(){
+    event.preventDefault();
+
+    var newBurger= {
+        burger_name: $("#input").val().trim(),
+        devoured: false
+    };
+
+    console.log(newBurger);
+    $.ajax("/api/burgers", {
+    type: "POST",
+    data: newBurger
+    }).then(
+      function(){
+      console.log("new burger created");
+      location.reload();
+  }
+)
+});
+
+$(".change-devoured").on("click", function(){
+  var id = $(this).data("id");
+  var newBurgerState={
+    devoured : 1
+  }
+  $.ajax("/api/burgers/"+id, {
+    type: "PUT",
+    data: newBurgerState
+  }).then(
+    function(){
+      location.reload();
+    }
+  )
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+})
+  </script>
 </body>
 </html>
